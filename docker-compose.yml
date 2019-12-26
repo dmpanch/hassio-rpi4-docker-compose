@@ -6,6 +6,7 @@ services:
     image: homeassistant/armv7-hassio-supervisor
     container_name: hassio_supervisor
     privileged: true
+    restart: always
     security_opt:
       - seccomp:unconfined
       - apparmor:unconfined
