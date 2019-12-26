@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  hassio:
+    image: homeassistant/armv7-hassio-supervisor
+    container_name: hassio_supervisor
+    privileged: true
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    environment:
+      - HOMEASSISTANT_REPOSITORY=homeassistant/raspberrypi4-homeassistant
+      - SUPERVISOR_SHARE=${SUPERVISOR_SHARE}
+      - SUPERVISOR_NAME=hassio_supervisor
+      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/var/run/dbus/system_bus_socket
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SUPERVISOR_SHARE}:/data
+      - /home/pi/hassio/scripts:/scripts
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/pi/hassio/portainer:/data:rw
+
+volumes:
+  portainer_data:
