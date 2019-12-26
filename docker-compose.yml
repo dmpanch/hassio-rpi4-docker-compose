@@ -11,12 +11,11 @@ services:
       - apparmor:unconfined
     environment:
       - HOMEASSISTANT_REPOSITORY=homeassistant/raspberrypi4-homeassistant
-      - SUPERVISOR_SHARE=${SUPERVISOR_SHARE}
       - SUPERVISOR_NAME=hassio_supervisor
       - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/var/run/dbus/system_bus_socket
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SUPERVISOR_SHARE}:/data
+      - /home/pi/hassio/data:/data
       - /home/pi/hassio/scripts:/scripts
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
