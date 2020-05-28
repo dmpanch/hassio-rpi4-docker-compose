@@ -13,7 +13,7 @@ services:
     environment:
       - HOMEASSISTANT_REPOSITORY=homeassistant/raspberrypi4-homeassistant
       - SUPERVISOR_NAME=hassio_supervisor
-      - SUPERVISOR_SHARE=/home/pi/hassio
+      - SUPERVISOR_SHARE=/home/pi/hassio/data
       - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/var/run/dbus/system_bus_socket
     volumes:
       - /etc/localtime:/etc/localtime:ro
