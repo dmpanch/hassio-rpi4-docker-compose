@@ -36,4 +36,4 @@ Reboot here or run the next commands with a sudo
 
     docker-compose up -d
     
-Hassio will be available on port 3128, Portainer on 9000
+Hassio will be available on port 8123, Portainer on 9000
